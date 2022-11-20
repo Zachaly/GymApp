@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Gym App</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="workouts">Workouts</string>
+    <string name="exercises">Exercises</string>
+    <string name="progression">Progression</string>
+    <string name="ideas">Ideas</string>
+</resources>
