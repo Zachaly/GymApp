@@ -5,11 +5,11 @@
         <item name="exampleColor">@color/light_blue_400</item>
     </style>
 
-    <style name="MenuButton">
-        <item name="android:layout_height">5dp</item>
-        <item name="android:layout_width">150dp</item>
+    <style name="MenuButton" parent="">
+        <item name="android:layout_height">@dimen/btn_height</item>
+        <item name="android:layout_width">@dimen/btn_width</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:layout_marginTop">@dimen/btn_margin</item>
+        <item name="android:layout_marginBottom">@dimen/btn_margin</item>
     </style>
 </resources>

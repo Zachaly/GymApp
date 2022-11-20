@@ -18,25 +18,21 @@
         <Button
             android:id="@+id/btn_workouts"
             style="@style/MenuButton"
-            android:layout_weight="1"
             android:text="@string/workouts" />
 
         <Button
             android:id="@+id/btn_exercises"
             style="@style/MenuButton"
-            android:layout_weight="1"
             android:text="@string/exercises" />
 
         <Button
             android:id="@+id/btn_progression"
             style="@style/MenuButton"
-            android:layout_weight="1"
             android:text="@string/progression" />
 
         <Button
             android:id="@+id/btn_ideas"
             style="@style/MenuButton"
-            android:layout_weight="1"
             android:text="@string/ideas" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
