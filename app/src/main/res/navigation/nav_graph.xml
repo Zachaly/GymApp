@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_mainFragment_to_exercicesFragment2"
             app:destination="@id/exercicesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_progressionFragment"
+            app:destination="@id/progressionFragment" />
     </fragment>
     <fragment
         android:id="@+id/workoutsFragment"
@@ -26,4 +29,9 @@
         android:name="com.example.gymapp.ExercicesFragment"
         android:label="@string/exercises"
         tools:layout="@layout/fragment_exercices" />
+    <fragment
+        android:id="@+id/progressionFragment"
+        android:name="com.example.gymapp.ProgressionFragment"
+        android:label="@string/progression"
+        tools:layout="@layout/fragment_progression" />
 </navigation>

@@ -33,5 +33,9 @@ class MainFragment : Fragment() {
         binding.btnExercises.setOnClickListener{
             findNavController().navigate(R.id.exercicesFragment)
         }
+        
+        binding.btnProgression.setOnClickListener{
+            findNavController().navigate(R.id.progressionFragment)
+        }
     }
 }
