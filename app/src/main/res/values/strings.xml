@@ -11,6 +11,7 @@
     <string name="bench_press">Bench Press</string>
     <string name="squat">Squat</string>
     <string name="deadlift">Deadlift</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ideas_3x3">3x3</string>
+    <string name="ideas_5x5">5x5</string>
+    <string name="ideas_joke">Belly dance workout</string>
 </resources>

@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_mainFragment_to_progressionFragment"
             app:destination="@id/progressionFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_ideasFragment"
+            app:destination="@id/ideasFragment" />
     </fragment>
     <fragment
         android:id="@+id/workoutsFragment"
@@ -34,4 +37,9 @@
         android:name="com.example.gymapp.ProgressionFragment"
         android:label="@string/progression"
         tools:layout="@layout/fragment_progression" />
+    <fragment
+        android:id="@+id/ideasFragment"
+        android:name="com.example.gymapp.IdeasFragment"
+        android:label="@string/ideas"
+        tools:layout="@layout/fragment_ideas" />
 </navigation>

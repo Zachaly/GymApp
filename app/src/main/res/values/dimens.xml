@@ -1,7 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="btn_margin">20dp</dimen>
-    <dimen name="btn_height">60dp</dimen>
-    <dimen name="btn_width">200dp</dimen>
+    <dimen name="btn_height">55dp</dimen>
+    <dimen name="btn_width">250dp</dimen>
     <dimen name="btn_spacing">20dp</dimen>
 </resources>

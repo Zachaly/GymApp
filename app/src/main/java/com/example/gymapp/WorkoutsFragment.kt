@@ -1,11 +1,8 @@
 package com.example.gymapp
 
 import android.os.Bundle
-import android.view.ContextThemeWrapper
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Space
 import com.example.gymapp.databinding.FragmentWorkoutsBinding
@@ -41,6 +38,9 @@ class WorkoutsFragment : Fragment() {
                 resources.getDimension(R.dimen.btn_width).toInt(),
                 resources.getDimension(R.dimen.btn_height).toInt()
             )
+            (btn.layoutParams as LinearLayout.LayoutParams).apply{
+                gravity = Gravity.CENTER
+            }
             btn.text = txt
 
             val space = Space(activity)
