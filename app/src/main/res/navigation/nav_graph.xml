@@ -12,10 +12,18 @@
         <action
             android:id="@+id/action_mainFragment_to_workoutsFragment"
             app:destination="@id/workoutsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_exercicesFragment2"
+            app:destination="@id/exercicesFragment" />
     </fragment>
     <fragment
         android:id="@+id/workoutsFragment"
         android:name="com.example.gymapp.WorkoutsFragment"
         android:label="@string/workouts"
         tools:layout="@layout/fragment_workouts" />
+    <fragment
+        android:id="@+id/exercicesFragment"
+        android:name="com.example.gymapp.ExercicesFragment"
+        android:label="@string/exercises"
+        tools:layout="@layout/fragment_exercices" />
 </navigation>

@@ -8,4 +8,7 @@
     <string name="progression">Progression</string>
     <string name="ideas">Ideas</string>
     <string name="add_workout">Add workout</string>
+    <string name="bench_press">Bench Press</string>
+    <string name="squat">Squat</string>
+    <string name="deadlift">Deadlift</string>
 </resources>

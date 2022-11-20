@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment">
+    tools:context=".ExercicesFragment" >
 
     <LinearLayout
-        android:layout_width="194dp"
-        android:layout_height="454dp"
+        android:layout_width="261dp"
+        android:layout_height="538dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,35 +16,29 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btn_workouts"
-            style="@style/MenuButton"
-            android:text="@string/workouts" />
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bench_press" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_spacing" />
 
         <Button
-            android:id="@+id/btn_exercises"
-            style="@style/MenuButton"
-            android:text="@string/exercises" />
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/squat" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_spacing" />
 
         <Button
-            android:id="@+id/btn_progression"
-            style="@style/MenuButton"
-            android:text="@string/progression" />
-
-        <Space
+            android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_spacing" />
-
-        <Button
-            android:id="@+id/btn_ideas"
-            style="@style/MenuButton"
-            android:text="@string/ideas" />
+            android:layout_height="wrap_content"
+            android:text="@string/deadlift" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

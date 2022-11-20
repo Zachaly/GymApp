@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.Space
 import com.example.gymapp.databinding.FragmentWorkoutsBinding
 import com.google.android.material.button.MaterialButton
 
@@ -19,7 +21,6 @@ class WorkoutsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentWorkoutsBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -36,8 +37,20 @@ class WorkoutsFragment : Fragment() {
             }
 
             val btn = MaterialButton(ContextThemeWrapper(activity, R.style.MenuButton))
+            btn.layoutParams = LinearLayout.LayoutParams(
+                resources.getDimension(R.dimen.btn_width).toInt(),
+                resources.getDimension(R.dimen.btn_height).toInt()
+            )
             btn.text = txt
+
+            val space = Space(activity)
+            space.layoutParams = LinearLayout.LayoutParams(
+                0,
+                resources.getDimension(R.dimen.btn_spacing).toInt()
+            )
+
             binding.workoutList.addView(btn)
+            binding.workoutList.addView(space)
             binding.editAddWorkout.setText("")
         }
     }

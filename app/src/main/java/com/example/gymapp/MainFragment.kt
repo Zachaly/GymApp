@@ -29,5 +29,9 @@ class MainFragment : Fragment() {
         binding.btnWorkouts.setOnClickListener{
             findNavController().navigate(R.id.workoutsFragment)
         }
+
+        binding.btnExercises.setOnClickListener{
+            findNavController().navigate(R.id.exercicesFragment)
+        }
     }
 }
