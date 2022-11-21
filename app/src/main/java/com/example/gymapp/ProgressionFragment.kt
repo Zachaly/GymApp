@@ -19,7 +19,7 @@ class ProgressionFragment : Fragment() {
     private var _workouts: MutableList<Workout> = mutableListOf<Workout>()
 
     private val binding get() = _binding!!
-    private val workouts get() = _workouts!!
+    private val workouts get() = _workouts
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
