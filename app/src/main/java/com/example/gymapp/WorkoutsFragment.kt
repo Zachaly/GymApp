@@ -6,8 +6,7 @@ import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.view.marginLeft
+import androidx.navigation.fragment.findNavController
 import com.example.gymapp.databinding.FragmentWorkoutsBinding
 import com.google.android.material.button.MaterialButton
 import kotlinx.serialization.encodeToString
@@ -78,15 +77,19 @@ class WorkoutsFragment : Fragment() {
             gravity = Gravity.CENTER
         }
         btn.text = workout.name
+        btn.setOnClickListener{
+            val action = WorkoutsFragmentDirections.actionWorkoutsFragmentToWorkoutViewFragment(workout.name)
+            findNavController().navigate(action)
+        }
 
         val removeBtn = TextView(activity)
         removeBtn.background = resources.getDrawable(R.drawable.cross)
         removeBtn.layoutParams  = LinearLayout.LayoutParams(
-            resources.getDimension(R.dimen.btn_height).toInt(),
-            resources.getDimension(R.dimen.btn_height).toInt()
+            resources.getDimension(R.dimen.remove_btn_size).toInt(),
+            resources.getDimension(R.dimen.remove_btn_size).toInt()
         )
         (removeBtn.layoutParams as LinearLayout.LayoutParams).apply{
-            gravity = Gravity.CENTER_HORIZONTAL
+            gravity = Gravity.CENTER
         }
 
         removeBtn.setOnClickListener{

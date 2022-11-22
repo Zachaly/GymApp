@@ -26,7 +26,11 @@
         android:id="@+id/workoutsFragment"
         android:name="com.example.gymapp.WorkoutsFragment"
         android:label="@string/workouts"
-        tools:layout="@layout/fragment_workouts" />
+        tools:layout="@layout/fragment_workouts" >
+        <action
+            android:id="@+id/action_workoutsFragment_to_workoutViewFragment"
+            app:destination="@id/workoutViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/exercicesFragment"
         android:name="com.example.gymapp.ExercicesFragment"
@@ -42,4 +46,13 @@
         android:name="com.example.gymapp.IdeasFragment"
         android:label="@string/ideas"
         tools:layout="@layout/fragment_ideas" />
+    <fragment
+        android:id="@+id/workoutViewFragment"
+        android:name="com.example.gymapp.WorkoutViewFragment"
+        android:label="Workout: {workout_name}"
+        tools:layout="@layout/fragment_workout_view">
+        <argument
+            android:name="workout_name"
+            app:argType="string" />
+    </fragment>
 </navigation>
