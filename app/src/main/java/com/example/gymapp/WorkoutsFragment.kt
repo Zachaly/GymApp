@@ -6,24 +6,23 @@ import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.gymapp.application.service.WorkoutService
 import com.example.gymapp.databinding.FragmentWorkoutsBinding
 import com.google.android.material.button.MaterialButton
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.decodeFromString
-import com.example.gymapp.models.Workout
-import java.io.File
-import java.lang.Exception
+import com.example.gymapp.domain.models.Workout
+import org.koin.android.ext.android.inject
 
 
-class WorkoutsFragment : Fragment() {
+class WorkoutsFragment() : Fragment() {
 
     private var _binding: FragmentWorkoutsBinding? = null
     private var _workouts: MutableList<Workout> = mutableListOf()
 
     private val binding get() = _binding!!
     private val workouts get() = _workouts
+    private val workoutService by inject<WorkoutService>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,12 +30,7 @@ class WorkoutsFragment : Fragment() {
     ): View? {
         _binding = FragmentWorkoutsBinding.inflate(inflater, container, false)
 
-        val path = context?.filesDir
-        try{
-            _workouts = Json.decodeFromString(File(path, "workouts.json").readText())
-        } catch (ex: Exception){
-            println(ex.message)
-        }
+        _workouts = workoutService.getWorkouts()
 
         return binding.root
     }
@@ -47,11 +41,13 @@ class WorkoutsFragment : Fragment() {
         binding.btnAddWorkout.setOnClickListener {
             val txt = binding.editAddWorkout.text.toString()
 
-            if(txt == ""){
+            if(txt == "") {
+                Toast.makeText(activity, R.string.workout_name_empty, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if(workouts.any { it.name == txt }){
+            if(workouts.any { it.name == txt }) {
+                Toast.makeText(activity, R.string.workout_name_taken, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             binding.editAddWorkout.setText("")
@@ -61,7 +57,7 @@ class WorkoutsFragment : Fragment() {
             addButton(wrk)
             workouts.add(wrk)
 
-            saveWorkouts()
+            workoutService.saveWorkouts(workouts)
         }
 
         refreshButtons()
@@ -94,12 +90,18 @@ class WorkoutsFragment : Fragment() {
 
         removeBtn.setOnClickListener{
             workouts.remove(workout)
-            saveWorkouts()
+            workoutService.saveWorkouts(workouts)
             refreshButtons()
         }
 
-        val space = Space(activity)
-        space.layoutParams = LinearLayout.LayoutParams(
+        val removeBtnSpace = Space(activity)
+        removeBtnSpace.layoutParams = LinearLayout.LayoutParams(
+            resources.getDimension(R.dimen.btn_spacing).toInt(),
+            0
+        )
+
+        val bottomSpace = Space(activity)
+        bottomSpace.layoutParams = LinearLayout.LayoutParams(
             0,
             resources.getDimension(R.dimen.btn_spacing).toInt()
         )
@@ -115,19 +117,11 @@ class WorkoutsFragment : Fragment() {
         }
 
         layout.addView(btn)
+        layout.addView(removeBtnSpace)
         layout.addView(removeBtn)
 
         binding.workoutList.addView(layout)
-        binding.workoutList.addView(space)
-    }
-
-    private fun saveWorkouts(){
-        val path = context?.filesDir
-        try{
-            File(path, "workouts.json").writeText(Json.encodeToString(workouts))
-        } catch (ex: Exception){
-            println(ex.message)
-        }
+        binding.workoutList.addView(bottomSpace)
     }
 
     private fun refreshButtons(){

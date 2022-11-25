@@ -1,4 +1,4 @@
-package com.example.gymapp.models
+package com.example.gymapp.domain.models
 
 import kotlinx.serialization.*
 

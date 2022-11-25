@@ -13,9 +13,10 @@ android {
         minSdk 23
         targetSdk 32
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        setProperty("archivesBaseName", "GymApp-$versionName")
     }
 
     buildTypes {
@@ -37,7 +38,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
@@ -50,6 +50,14 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-serialization'
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.4.1'
-    //implementation "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
-
+    // Koin Core features
+    implementation "io.insert-koin:koin-core:3.2.2"
+    // Koin main features for Android
+    implementation "io.insert-koin:koin-android:3.3.0"
+    // Java Compatibility
+    implementation "io.insert-koin:koin-android-compat:3.3.0"
+    // Jetpack WorkManager
+    implementation "io.insert-koin:koin-androidx-workmanager:3.3.0"
+    // Navigation Graph
+    implementation "io.insert-koin:koin-androidx-navigation:3.3.0"
 }

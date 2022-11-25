@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.navArgs
+import com.example.gymapp.application.service.WorkoutService
 import com.example.gymapp.databinding.FragmentWorkoutViewBinding
-import com.example.gymapp.models.Workout
+import com.example.gymapp.domain.models.Workout
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import org.koin.android.ext.android.inject
 import java.io.File
 import java.lang.Exception
 
@@ -21,6 +23,7 @@ class WorkoutViewFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: WorkoutViewFragmentArgs by navArgs()
     private val workout get() = _workout!!
+    private val workoutService by inject<WorkoutService>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +31,7 @@ class WorkoutViewFragment : Fragment() {
     ): View? {
         _binding = FragmentWorkoutViewBinding.inflate(inflater, container, false)
 
-        val path = context?.filesDir
-        try{
-            val workouts = Json.decodeFromString<List<Workout>>(File(path, "workouts.json").readText())
-            _workout = workouts.find { it.name == args.workoutName }
-        } catch (ex: Exception){
-            println(ex.message)
-        }
+        _workout = workoutService.getWorkout(args.workoutName)
 
         return binding.root
     }

@@ -5,13 +5,11 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
 import android.widget.Space
+import com.example.gymapp.application.service.WorkoutService
 import com.example.gymapp.databinding.FragmentProgressionBinding
-import com.example.gymapp.models.Workout
+import com.example.gymapp.domain.models.Workout
 import com.google.android.material.button.MaterialButton
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
-import java.io.File
-import java.lang.Exception
+import org.koin.android.ext.android.inject
 
 class ProgressionFragment : Fragment() {
 
@@ -20,6 +18,7 @@ class ProgressionFragment : Fragment() {
 
     private val binding get() = _binding!!
     private val workouts get() = _workouts
+    private val workoutService by inject<WorkoutService>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +26,7 @@ class ProgressionFragment : Fragment() {
     ): View? {
         _binding = FragmentProgressionBinding.inflate(inflater, container, false)
 
-        val path = context?.filesDir
-        try{
-            _workouts = Json.decodeFromString(File(path, "workouts.json").readText())
-        } catch (ex: Exception){
-            println(ex.message)
-        }
+        _workouts = workoutService.getWorkouts()
 
         return binding.root
     }
