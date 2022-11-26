@@ -1,4 +1,4 @@
-package com.example.gymapp
+package com.example.gymapp.fragments
 
 import android.os.Bundle
 import android.view.*
@@ -8,6 +8,7 @@ import android.widget.Space
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.gymapp.R
 import com.example.gymapp.databinding.FragmentWorkoutsBinding
 import com.google.android.material.button.MaterialButton
 import com.example.gymapp.domain.models.WorkoutMenuItem

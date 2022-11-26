@@ -1,10 +1,11 @@
-package com.example.gymapp
+package com.example.gymapp.fragments
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
 import android.widget.Space
+import com.example.gymapp.R
 import com.example.gymapp.databinding.FragmentProgressionBinding
 import com.example.gymapp.viewModels.ProgressionFragmentViewModel
 import com.google.android.material.button.MaterialButton
