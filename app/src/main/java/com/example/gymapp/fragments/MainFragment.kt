@@ -1,15 +1,13 @@
-package com.example.gymapp
+package com.example.gymapp.fragments
 
 import android.os.Bundle
-import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.example.gymapp.R
 import com.example.gymapp.databinding.FragmentMainBinding
-import com.google.android.material.button.MaterialButton
 
 class MainFragment : Fragment() {
 

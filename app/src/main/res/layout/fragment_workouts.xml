@@ -5,7 +5,7 @@
     style="@style/MenuButton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WorkoutsFragment">
+    tools:context=".fragments.WorkoutsFragment">
 
     <ScrollView
         android:layout_width="match_parent"

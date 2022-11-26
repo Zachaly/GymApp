@@ -1,12 +1,30 @@
 package com.example.gymapp
 
-import com.example.gymapp.application.service.FileService
-import com.example.gymapp.application.service.FileServiceImpl
-import com.example.gymapp.application.service.WorkoutService
-import com.example.gymapp.application.service.WorkoutServiceImpl
+import androidx.room.Room
+import com.example.gymapp.application.factory.WorkoutFactory
+import com.example.gymapp.application.factory.WorkoutFactoryImpl
+import com.example.gymapp.application.repository.WorkoutRepository
+import com.example.gymapp.application.repository.WorkoutRepositoryImpl
+import com.example.gymapp.database.GymDatabase
+import com.example.gymapp.viewModels.ProgressionFragmentViewModel
+import com.example.gymapp.viewModels.WorkoutViewFragmentViewModel
+import com.example.gymapp.viewModels.WorkoutsFragmentViewModel
+import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-    single<FileService> { FileServiceImpl(get()) }
-    single<WorkoutService> { WorkoutServiceImpl(get()) }
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            GymDatabase::class.java,
+            "gym-database"
+        ).allowMainThreadQueries()
+        .build()
+    }
+    factory<WorkoutRepository> { WorkoutRepositoryImpl(get()) }
+    factory<WorkoutFactory> { WorkoutFactoryImpl() }
+    viewModel { WorkoutsFragmentViewModel(get(), get()) }
+    viewModel { WorkoutViewFragmentViewModel(get()) }
+    viewModel { ProgressionFragmentViewModel(get()) }
 }

@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.gymapp.MainFragment"
+        android:name="com.example.gymapp.fragments.MainFragment"
         android:label="Home"
         tools:layout="@layout/fragment_main" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/workoutsFragment"
-        android:name="com.example.gymapp.WorkoutsFragment"
+        android:name="com.example.gymapp.fragments.WorkoutsFragment"
         android:label="@string/workouts"
         tools:layout="@layout/fragment_workouts" >
         <action
@@ -33,26 +33,26 @@
     </fragment>
     <fragment
         android:id="@+id/exercicesFragment"
-        android:name="com.example.gymapp.ExercicesFragment"
+        android:name="com.example.gymapp.fragments.ExercicesFragment"
         android:label="@string/exercises"
         tools:layout="@layout/fragment_exercices" />
     <fragment
         android:id="@+id/progressionFragment"
-        android:name="com.example.gymapp.ProgressionFragment"
+        android:name="com.example.gymapp.fragments.ProgressionFragment"
         android:label="@string/progression"
         tools:layout="@layout/fragment_progression" />
     <fragment
         android:id="@+id/ideasFragment"
-        android:name="com.example.gymapp.IdeasFragment"
+        android:name="com.example.gymapp.fragments.IdeasFragment"
         android:label="@string/ideas"
         tools:layout="@layout/fragment_ideas" />
     <fragment
         android:id="@+id/workoutViewFragment"
-        android:name="com.example.gymapp.WorkoutViewFragment"
-        android:label="Workout: {workout_name}"
+        android:name="com.example.gymapp.fragments.WorkoutViewFragment"
+        android:label="Workout"
         tools:layout="@layout/fragment_workout_view">
         <argument
-            android:name="workout_name"
-            app:argType="string" />
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>
