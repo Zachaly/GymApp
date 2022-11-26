@@ -1,8 +1,12 @@
 package com.example.gymapp
 
 import androidx.room.Room
+import com.example.gymapp.application.factory.ExerciseFactory
+import com.example.gymapp.application.factory.ExerciseFactoryImpl
 import com.example.gymapp.application.factory.WorkoutFactory
 import com.example.gymapp.application.factory.WorkoutFactoryImpl
+import com.example.gymapp.application.repository.ExerciseRepository
+import com.example.gymapp.application.repository.ExerciseRepositoryImpl
 import com.example.gymapp.application.repository.WorkoutRepository
 import com.example.gymapp.application.repository.WorkoutRepositoryImpl
 import com.example.gymapp.database.GymDatabase
@@ -24,6 +28,8 @@ val appModule = module {
     }
     factory<WorkoutRepository> { WorkoutRepositoryImpl(get()) }
     factory<WorkoutFactory> { WorkoutFactoryImpl() }
+    factory<ExerciseRepository> { ExerciseRepositoryImpl(get()) }
+    factory<ExerciseFactory> { ExerciseFactoryImpl() }
     viewModel { WorkoutsFragmentViewModel(get(), get()) }
     viewModel { WorkoutViewFragmentViewModel(get()) }
     viewModel { ProgressionFragmentViewModel(get()) }
