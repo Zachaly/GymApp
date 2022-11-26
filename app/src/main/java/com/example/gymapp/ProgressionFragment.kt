@@ -5,20 +5,17 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
 import android.widget.Space
-import com.example.gymapp.application.service.WorkoutService
 import com.example.gymapp.databinding.FragmentProgressionBinding
-import com.example.gymapp.domain.models.WorkoutMenuItem
+import com.example.gymapp.viewModels.ProgressionFragmentViewModel
 import com.google.android.material.button.MaterialButton
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProgressionFragment : Fragment() {
 
     private var _binding: FragmentProgressionBinding? = null
-    private var _workouts: MutableList<WorkoutMenuItem> = mutableListOf<WorkoutMenuItem>()
 
     private val binding get() = _binding!!
-    private val workouts get() = _workouts
-    private val workoutService by inject<WorkoutService>()
+    private val viewModel:ProgressionFragmentViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +23,9 @@ class ProgressionFragment : Fragment() {
     ): View? {
         _binding = FragmentProgressionBinding.inflate(inflater, container, false)
 
-        _workouts = workoutService.getWorkouts()
+        viewModel.workouts.observe(viewLifecycleOwner) {
+            loadButtons()
+        }
 
         return binding.root
     }
@@ -34,7 +33,11 @@ class ProgressionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        for (wrk in workouts){
+        viewModel.getWorkouts()
+    }
+
+    private fun loadButtons(){
+        for (wrk in viewModel.workouts.value!!){
             val btn = MaterialButton(ContextThemeWrapper(activity, R.style.MenuButton))
             btn.layoutParams = LinearLayout.LayoutParams(
                 resources.getDimension(R.dimen.btn_width).toInt(),

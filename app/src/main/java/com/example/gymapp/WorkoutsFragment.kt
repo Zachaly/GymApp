@@ -8,27 +8,19 @@ import android.widget.Space
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import androidx.room.Room
-import com.example.gymapp.application.repository.WorkoutRepository
-import com.example.gymapp.application.service.WorkoutService
-import com.example.gymapp.database.GymDatabase
 import com.example.gymapp.databinding.FragmentWorkoutsBinding
-import com.example.gymapp.domain.entity.Workout
 import com.google.android.material.button.MaterialButton
 import com.example.gymapp.domain.models.WorkoutMenuItem
-import org.koin.android.ext.android.inject
-import org.koin.android.ext.koin.androidContext
-import java.util.*
+import com.example.gymapp.viewModels.WorkoutsFragmentViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
 class WorkoutsFragment : Fragment() {
 
     private var _binding: FragmentWorkoutsBinding? = null
-    private var _workouts: MutableList<WorkoutMenuItem> = mutableListOf()
 
     private val binding get() = _binding!!
-    private val workouts get() = _workouts
-    private val workoutService by inject<WorkoutService>()
+    private val viewModel by activityViewModel<WorkoutsFragmentViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +28,9 @@ class WorkoutsFragment : Fragment() {
     ): View? {
         _binding = FragmentWorkoutsBinding.inflate(inflater, container, false)
 
-        _workouts = workoutService.getWorkouts()
+        viewModel.workouts.observe(viewLifecycleOwner) {
+            refreshButtons()
+        }
 
         return binding.root
     }
@@ -44,26 +38,24 @@ class WorkoutsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.loadWorkouts()
+
         binding.btnAddWorkout.setOnClickListener {
             val txt = binding.editAddWorkout.text.toString()
 
-            if(txt == "") {
+            if(txt.isEmpty()) {
                 Toast.makeText(activity, R.string.workout_name_empty, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if(workouts.any { it.name == txt }) {
+            if(viewModel.workouts.value!!.any { it.name == txt }) {
                 Toast.makeText(activity, R.string.workout_name_taken, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
             binding.editAddWorkout.setText("")
 
-            val wrk = WorkoutMenuItem(txt, 0)
-
-            addButton(wrk)
-            workouts.add(wrk)
-
-            workoutService.saveWorkouts(workouts)
+            viewModel.addWorkout(txt)
         }
 
         refreshButtons()
@@ -80,7 +72,9 @@ class WorkoutsFragment : Fragment() {
         }
         btn.text = workout.name
         btn.setOnClickListener{
-            val action = WorkoutsFragmentDirections.actionWorkoutsFragmentToWorkoutViewFragment(workout.name)
+            println(workout)
+            val action = WorkoutsFragmentDirections
+                .actionWorkoutsFragmentToWorkoutViewFragment(workout.id)
             findNavController().navigate(action)
         }
 
@@ -95,9 +89,7 @@ class WorkoutsFragment : Fragment() {
         }
 
         removeBtn.setOnClickListener{
-            workouts.remove(workout)
-            workoutService.saveWorkouts(workouts)
-            refreshButtons()
+            viewModel.deleteWorkout(workout.id)
         }
 
         val removeBtnSpace = Space(activity)
@@ -132,7 +124,7 @@ class WorkoutsFragment : Fragment() {
 
     private fun refreshButtons(){
         binding.workoutList.removeAllViews()
-        for (wrk in workouts){
+        for (wrk in viewModel.workouts.value!!){
             addButton(wrk)
         }
     }

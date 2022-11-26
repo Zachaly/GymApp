@@ -49,10 +49,10 @@
     <fragment
         android:id="@+id/workoutViewFragment"
         android:name="com.example.gymapp.WorkoutViewFragment"
-        android:label="Workout: {workout_name}"
+        android:label="Workout"
         tools:layout="@layout/fragment_workout_view">
         <argument
-            android:name="workout_name"
-            app:argType="string" />
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>
