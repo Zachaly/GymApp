@@ -10,7 +10,7 @@ import com.example.gymapp.domain.models.ExerciseMenuItem
 @Dao
 interface ExerciseDao {
     @Query("SELECT name, id FROM exercise")
-    suspend fun getListItems() : List<ExerciseMenuItem>
+    suspend fun getListItems() : MutableList<ExerciseMenuItem>
 
     @Insert
     suspend fun insertAll(vararg exercises: Exercise)

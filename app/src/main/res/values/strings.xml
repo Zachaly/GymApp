@@ -14,6 +14,7 @@
     <string name="ideas_3x3">3x3</string>
     <string name="ideas_5x5">5x5</string>
     <string name="ideas_joke">Belly dance workout</string>
-    <string name="workout_name_taken">Name already taken!</string>
-    <string name="workout_name_empty">Name cannot be empty!</string>
+    <string name="name_taken">Name already taken!</string>
+    <string name="name_empty">Name cannot be empty!</string>
+    <string name="add_exercise">Add exercise</string>
 </resources>

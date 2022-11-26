@@ -5,7 +5,7 @@ import com.example.gymapp.domain.entity.Exercise
 import com.example.gymapp.domain.models.ExerciseMenuItem
 
 interface ExerciseRepository {
-    suspend fun getList() : List<ExerciseMenuItem>
+    suspend fun getList() : MutableList<ExerciseMenuItem>
     suspend fun getById(id: Int) : Exercise
     suspend fun deleteById(id: Int)
     suspend fun insertAll(vararg exercises: Exercise)
@@ -14,7 +14,7 @@ interface ExerciseRepository {
 class ExerciseRepositoryImpl(
     private val _database: GymDatabase
     ) : ExerciseRepository {
-    override suspend fun getList(): List<ExerciseMenuItem> {
+    override suspend fun getList(): MutableList<ExerciseMenuItem> {
         return _database.exerciseDao().getListItems()
     }
 

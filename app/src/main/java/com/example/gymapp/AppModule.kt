@@ -10,6 +10,7 @@ import com.example.gymapp.application.repository.ExerciseRepositoryImpl
 import com.example.gymapp.application.repository.WorkoutRepository
 import com.example.gymapp.application.repository.WorkoutRepositoryImpl
 import com.example.gymapp.database.GymDatabase
+import com.example.gymapp.viewModels.ExercisesFragmentViewModel
 import com.example.gymapp.viewModels.ProgressionFragmentViewModel
 import com.example.gymapp.viewModels.WorkoutViewFragmentViewModel
 import com.example.gymapp.viewModels.WorkoutsFragmentViewModel
@@ -33,4 +34,5 @@ val appModule = module {
     viewModel { WorkoutsFragmentViewModel(get(), get()) }
     viewModel { WorkoutViewFragmentViewModel(get()) }
     viewModel { ProgressionFragmentViewModel(get()) }
+    viewModel { ExercisesFragmentViewModel(get(), get())}
 }

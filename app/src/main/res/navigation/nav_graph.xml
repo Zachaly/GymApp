@@ -33,9 +33,13 @@
     </fragment>
     <fragment
         android:id="@+id/exercicesFragment"
-        android:name="com.example.gymapp.fragments.ExercicesFragment"
+        android:name="com.example.gymapp.fragments.ExercisesFragment"
         android:label="@string/exercises"
-        tools:layout="@layout/fragment_exercices" />
+        tools:layout="@layout/fragment_exercices" >
+        <action
+            android:id="@+id/action_exercicesFragment_to_addExerciseFragment"
+            app:destination="@id/addExerciseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/progressionFragment"
         android:name="com.example.gymapp.fragments.ProgressionFragment"
@@ -54,5 +58,14 @@
         <argument
             android:name="id"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/addExerciseFragment"
+        android:name="com.example.gymapp.fragments.AddExerciseFragment"
+        android:label="Add exercise"
+        tools:layout="@layout/fragment_add_exercise" >
+        <action
+            android:id="@+id/action_addExerciseFragment_to_exercicesFragment"
+            app:destination="@id/exercicesFragment" />
     </fragment>
 </navigation>

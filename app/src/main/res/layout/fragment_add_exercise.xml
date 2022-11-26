@@ -4,34 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ExercisesFragment" >
+    tools:context=".fragments.AddExerciseFragment" >
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="378dp"
-        android:layout_height="510dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/exercise_name_input"
+        android:layout_width="236dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:hint="Exercise Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_exercise"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.416">
-
-        <LinearLayout
-            android:id="@+id/exercise_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        app:layout_constraintVertical_bias="0.868" />
 
     <Button
-        android:id="@+id/btn_go_add_exercise"
-        android:layout_width="277dp"
-        android:layout_height="50dp"
+        android:id="@+id/btn_add_exercise"
+        style="@style/MenuButton"
         android:text="@string/add_exercise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.46" />
 </androidx.constraintlayout.widget.ConstraintLayout>
