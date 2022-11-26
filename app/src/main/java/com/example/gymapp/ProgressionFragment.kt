@@ -7,14 +7,14 @@ import android.widget.LinearLayout
 import android.widget.Space
 import com.example.gymapp.application.service.WorkoutService
 import com.example.gymapp.databinding.FragmentProgressionBinding
-import com.example.gymapp.domain.models.Workout
+import com.example.gymapp.domain.models.WorkoutMenuItem
 import com.google.android.material.button.MaterialButton
 import org.koin.android.ext.android.inject
 
 class ProgressionFragment : Fragment() {
 
     private var _binding: FragmentProgressionBinding? = null
-    private var _workouts: MutableList<Workout> = mutableListOf<Workout>()
+    private var _workouts: MutableList<WorkoutMenuItem> = mutableListOf<WorkoutMenuItem>()
 
     private val binding get() = _binding!!
     private val workouts get() = _workouts

@@ -9,16 +9,12 @@ import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import com.example.gymapp.application.service.WorkoutService
 import com.example.gymapp.databinding.FragmentWorkoutViewBinding
-import com.example.gymapp.domain.models.Workout
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
+import com.example.gymapp.domain.models.WorkoutMenuItem
 import org.koin.android.ext.android.inject
-import java.io.File
-import java.lang.Exception
 
 class WorkoutViewFragment : Fragment() {
     private var _binding: FragmentWorkoutViewBinding? = null
-    private var _workout: Workout? = null
+    private var _workout: WorkoutMenuItem? = null
 
     private val binding get() = _binding!!
     private val args: WorkoutViewFragmentArgs by navArgs()

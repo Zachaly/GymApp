@@ -8,17 +8,23 @@ import android.widget.Space
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.room.Room
+import com.example.gymapp.application.repository.WorkoutRepository
 import com.example.gymapp.application.service.WorkoutService
+import com.example.gymapp.database.GymDatabase
 import com.example.gymapp.databinding.FragmentWorkoutsBinding
+import com.example.gymapp.domain.entity.Workout
 import com.google.android.material.button.MaterialButton
-import com.example.gymapp.domain.models.Workout
+import com.example.gymapp.domain.models.WorkoutMenuItem
 import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
+import java.util.*
 
 
-class WorkoutsFragment() : Fragment() {
+class WorkoutsFragment : Fragment() {
 
     private var _binding: FragmentWorkoutsBinding? = null
-    private var _workouts: MutableList<Workout> = mutableListOf()
+    private var _workouts: MutableList<WorkoutMenuItem> = mutableListOf()
 
     private val binding get() = _binding!!
     private val workouts get() = _workouts
@@ -52,7 +58,7 @@ class WorkoutsFragment() : Fragment() {
             }
             binding.editAddWorkout.setText("")
 
-            val wrk = Workout(txt)
+            val wrk = WorkoutMenuItem(txt, 0)
 
             addButton(wrk)
             workouts.add(wrk)
@@ -63,7 +69,7 @@ class WorkoutsFragment() : Fragment() {
         refreshButtons()
     }
 
-    private fun addButton(workout: Workout){
+    private fun addButton(workout: WorkoutMenuItem){
         val btn = MaterialButton(ContextThemeWrapper(activity, R.style.MenuButton))
         btn.layoutParams = LinearLayout.LayoutParams(
             resources.getDimension(R.dimen.btn_width).toInt(),
