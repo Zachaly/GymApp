@@ -48,7 +48,12 @@ class ExercisesFragment : FragmentModel() {
         binding.exerciseList.removeAllViews()
 
         for(exercise in viewModel.exercises.value!!){
-            val btn = createRemovableButton(exercise.name, {}, { viewModel.deleteExercise(exercise.id) })
+
+            val btn = createRemovableButton(exercise.name, {
+                val action = ExercisesFragmentDirections
+                    .actionExercicesFragmentToExerciseViewFragment(exercise.id)
+                findNavController().navigate(action)
+            }, { viewModel.deleteExercise(exercise.id) })
 
             val space = Space(activity)
             space.layoutParams = LinearLayout.LayoutParams(
