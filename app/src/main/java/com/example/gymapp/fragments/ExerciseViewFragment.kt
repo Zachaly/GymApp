@@ -33,6 +33,7 @@ class ExerciseViewFragment : Fragment() {
 
         viewModel.exercise.observe(viewLifecycleOwner){
             refreshTable()
+            binding.exerciseFilters.text = viewModel.exercise.value!!.filters.joinToString(", ")
         }
 
         return binding.root

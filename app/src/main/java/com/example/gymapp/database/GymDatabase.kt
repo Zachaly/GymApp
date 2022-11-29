@@ -5,12 +5,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.gymapp.database.dao.ExerciseDao
 import com.example.gymapp.database.dao.WorkoutDao
-import com.example.gymapp.domain.entity.Converters
-import com.example.gymapp.domain.entity.Exercise
-import com.example.gymapp.domain.entity.ExerciseRecord
-import com.example.gymapp.domain.entity.Workout
+import com.example.gymapp.domain.entity.*
 
-@Database(entities = [Workout::class, Exercise::class, ExerciseRecord::class],
+@Database(entities = [Workout::class, Exercise::class, ExerciseRecord::class, ExerciseFilter::class, ExerciseExerciseFilter::class],
     version = 1,
     exportSchema = false)
 @TypeConverters(Converters::class)

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.gymapp.R
@@ -26,11 +27,29 @@ class AddExerciseFragment : Fragment() {
 
         _binding = FragmentAddExerciseBinding.inflate(inflater, container, false)
 
+        viewModel.selectedFilterIds.value = mutableListOf()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        for(filter in viewModel.filters.value!!){
+            val checkBox = CheckBox(activity)
+            checkBox.text = filter.value
+
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                if(isChecked){
+                    println(filter.id)
+                    viewModel.selectedFilterIds.value!!.add(filter.id)
+                } else{
+                    viewModel.selectedFilterIds.value!!.remove(filter.id)
+                }
+            }
+
+            binding.addFiltersCheckboxes.addView(checkBox)
+        }
 
         binding.btnAddExercise.setOnClickListener{
             val txt = binding.exerciseNameInput.text.toString()

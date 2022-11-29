@@ -8,7 +8,7 @@ import com.example.gymapp.domain.models.ExerciseModel
 interface ExerciseFactory {
     fun create(name: String) : Exercise
     fun createMenuItem(exercise: Exercise) : ExerciseMenuItem
-    fun createModel(exercise: Exercise, records: MutableList<ExerciseRecord>) : ExerciseModel
+    fun createModel(exercise: Exercise, records: MutableList<ExerciseRecord>, filters: List<String>) : ExerciseModel
 }
 
 class ExerciseFactoryImpl : ExerciseFactory{
@@ -20,7 +20,7 @@ class ExerciseFactoryImpl : ExerciseFactory{
         return ExerciseMenuItem(exercise.id, exercise.name)
     }
 
-    override fun createModel(exercise: Exercise, records: MutableList<ExerciseRecord>) : ExerciseModel {
-        return ExerciseModel(exercise.id, exercise.name, records)
+    override fun createModel(exercise: Exercise, records: MutableList<ExerciseRecord>, filters: List<String>) : ExerciseModel {
+        return ExerciseModel(exercise.id, exercise.name, records, filters)
     }
 }

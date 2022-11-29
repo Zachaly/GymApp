@@ -1,12 +1,12 @@
 package com.example.gymapp.fragments
 
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.Space
+import android.widget.*
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.example.gymapp.R
@@ -29,6 +29,32 @@ class ExercisesFragment : FragmentModel() {
 
         viewModel.exercises.observe(viewLifecycleOwner){
             refreshButtons()
+        }
+
+        viewModel.filters.observe(viewLifecycleOwner){
+            val spinner = binding.filterSelect
+
+            val items = ArrayList<String>()
+            items.add("")
+            items.addAll(viewModel.filters.value!!.map { it.value })
+
+            spinner.adapter = ArrayAdapter(ContextThemeWrapper(activity, 0),
+                com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+                items)
+
+            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    if(items[p2].isEmpty()){
+                        viewModel.loadExercises()
+                        return
+                    }
+                    viewModel.loadExercisesWithFilter(items[p2])
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    viewModel.loadData()
+                }
+            }
         }
 
         viewModel.loadData()
