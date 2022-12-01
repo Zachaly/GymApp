@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.example.gymapp.R
@@ -67,6 +68,15 @@ class ExercisesFragment : FragmentModel() {
 
         binding.btnGoAddExercise.setOnClickListener{
             findNavController().navigate(R.id.action_exercicesFragment_to_addExerciseFragment)
+        }
+
+        binding.searchByNameEdit.addTextChangedListener {
+            if(binding.searchByNameEdit.text.toString().isEmpty()){
+                viewModel.loadExercises()
+                return@addTextChangedListener
+            }
+
+            viewModel.loadExercisesByName(binding.searchByNameEdit.text.toString())
         }
     }
 

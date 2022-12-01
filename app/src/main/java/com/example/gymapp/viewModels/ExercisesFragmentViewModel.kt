@@ -71,6 +71,12 @@ class ExercisesFragmentViewModel(
         }
     }
 
+    fun loadExercisesByName(name: String){
+        viewModelScope.launch {
+            exercises.value = repository.searchByName(name)
+        }
+    }
+
     fun loadExercises(){
         viewModelScope.launch {
             exercises.value = repository.getList()
