@@ -11,7 +11,7 @@ interface ExerciseFactory {
     fun createModel(exercise: Exercise, records: MutableList<ExerciseRecord>, filters: List<String>) : ExerciseModel
 }
 
-class ExerciseFactoryImpl : ExerciseFactory{
+class ExerciseFactoryImpl : ExerciseFactory {
     override fun create(name: String) : Exercise {
         return Exercise(name)
     }

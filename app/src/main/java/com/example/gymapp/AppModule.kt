@@ -1,6 +1,7 @@
 package com.example.gymapp
 
 import androidx.room.Room
+import com.example.gymapp.application.SetupManager
 import com.example.gymapp.application.factory.*
 import com.example.gymapp.application.repository.ExerciseRepository
 import com.example.gymapp.application.repository.ExerciseRepositoryImpl
@@ -21,6 +22,7 @@ val appModule = module {
         ).allowMainThreadQueries()
         .build()
     }
+    factory { SetupManager(get()) }
     factory<WorkoutRepository> { WorkoutRepositoryImpl(get()) }
     factory<WorkoutFactory> { WorkoutFactoryImpl() }
     factory<ExerciseRepository> { ExerciseRepositoryImpl(get(), get()) }
