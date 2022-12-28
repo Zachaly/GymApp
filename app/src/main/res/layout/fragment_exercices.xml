@@ -4,39 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ExercicesFragment" >
+    tools:context=".fragments.ExercisesFragment" >
 
-    <LinearLayout
-        android:layout_width="261dp"
-        android:layout_height="538dp"
-        android:orientation="vertical"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="378dp"
+        android:layout_height="510dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.416">
+
+        <LinearLayout
+            android:id="@+id/exercise_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_go_add_exercise"
+        android:layout_width="277dp"
+        android:layout_height="50dp"
+        android:text="@string/add_exercise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 
-        <Button
-            android:id="@+id/button3"
-            style="@style/MenuButton"
-            android:text="@string/bench_press" />
+    <Spinner
+        android:id="@+id/filter_select"
+        android:layout_width="194dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.038" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_spacing" />
-
-        <Button
-            android:id="@+id/button2"
-            style="@style/MenuButton"
-            android:layout_height="wrap_content"
-            android:text="@string/squat" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_spacing" />
-
-        <Button
-            android:id="@+id/button"
-            style="@style/MenuButton"
-            android:text="@string/deadlift" />
-    </LinearLayout>
+    <EditText
+        android:id="@+id/search_by_name_edit"
+        android:layout_width="164dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="Search by name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.934"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037" />
 </androidx.constraintlayout.widget.ConstraintLayout>

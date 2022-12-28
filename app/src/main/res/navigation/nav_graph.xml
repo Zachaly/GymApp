@@ -33,9 +33,16 @@
     </fragment>
     <fragment
         android:id="@+id/exercicesFragment"
-        android:name="com.example.gymapp.fragments.ExercicesFragment"
+        android:name="com.example.gymapp.fragments.ExercisesFragment"
         android:label="@string/exercises"
-        tools:layout="@layout/fragment_exercices" />
+        tools:layout="@layout/fragment_exercices" >
+        <action
+            android:id="@+id/action_exercicesFragment_to_addExerciseFragment"
+            app:destination="@id/addExerciseFragment" />
+        <action
+            android:id="@+id/action_exercicesFragment_to_exerciseViewFragment"
+            app:destination="@id/exerciseViewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/progressionFragment"
         android:name="com.example.gymapp.fragments.ProgressionFragment"
@@ -53,6 +60,39 @@
         tools:layout="@layout/fragment_workout_view">
         <argument
             android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/addExerciseFragment"
+        android:name="com.example.gymapp.fragments.AddExerciseFragment"
+        android:label="Add exercise"
+        tools:layout="@layout/fragment_add_exercise" >
+        <action
+            android:id="@+id/action_addExerciseFragment_to_exercicesFragment"
+            app:destination="@id/exercicesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseViewFragment"
+        android:name="com.example.gymapp.fragments.ExerciseViewFragment"
+        android:label="Exercise"
+        tools:layout="@layout/fragment_exercise_view" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_exerciseViewFragment_to_addRecordFragment"
+            app:destination="@id/addRecordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRecordFragment"
+        android:name="com.example.gymapp.fragments.AddRecordFragment"
+        android:label="Add record"
+        tools:layout="@layout/fragment_add_record">
+        <action
+            android:id="@+id/action_addRecordFragment_to_exerciseViewFragment"
+            app:destination="@id/exerciseViewFragment" />
+        <argument
+            android:name="exercise_id"
             app:argType="integer" />
     </fragment>
 </navigation>
