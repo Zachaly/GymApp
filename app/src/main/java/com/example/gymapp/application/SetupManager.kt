@@ -55,7 +55,6 @@ class SetupManager(
 
     private suspend fun setExerciseWithFilter(){
         if(_createdExercises.isEmpty()){
-            println("lol")
             return
         }
         val exercises = _database.exerciseDao().getListItems().filter { _createdExercises.contains(it.name) }
